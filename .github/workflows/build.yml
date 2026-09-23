@@ -9,7 +9,7 @@ jobs:
         with:
           flutter-version: '3.19.0'
       - name: Fix android folder
-        run: |
+        run:
           mv lib/main.dart /tmp/m.dart
           flutter create. --platforms=android --project-name=darell_trading_plan
           mv /tmp/m.dart lib/main.dart
