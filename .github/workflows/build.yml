@@ -12,7 +12,7 @@ jobs:
         run:
           mv lib/main.dart /tmp/m.dart
           flutter create. --platforms=android --project-name=darell_trading_plan
-          mv /tmp/m.dart lib/main
+          mv /tmp/m.dart lib/main/dart
       - run: flutter pub get
       - run: flutter build apk --release
       - uses: actions/upload-artifact@v4
