@@ -1,0 +1,23 @@
+name: Build Trading Plan APK
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.22.0'
+          channel: stable
+      - name: Fix android folder
+        run: |
+          mv lib/main.dart /tmp/m.dart
+          flutter create. --platforms=android --project-name=darell_trading_plan --org=com.darell
+          mv /tmp/m.dart lib/main.dart
+      - run: |
+          flutter pub get
+          flutter build apk --release
+      - uses: actions/upload-artifact@v4
+        with:
+          name: darell-trading-plan-apk
+          path: build/app/outputs/flutter-apk/app-release.apk
